@@ -3,38 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingeniero de Software con IA | Perfil</title>
+    <title>Ingeniero de Software | Perfil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
     <!-- Header -->
-    <header class="premium-header">
+    <header class="perfil-header">
         <div id="particles-js" class="particles-container"></div>
         <div class="glass-overlay"></div>
-        <div class="container">
+        <!-- Contenedor principal con contenido escalable -->
+        <div class="header-container">
             <nav class="navbar">
-                <a href="#" class="logo">
-                    <span class="logo-icon"><i class="fas fa-brain"></i></span>
-                    <span>IA</span>DEVELOPER
-                </a>
-                <div class="nav-right">
-                    <ul class="nav-links">
-                        <li><a href="#about" class="nav-link"><span class="link-number"></span> Sobre mí</a></li>
-                        <li><a href="#experience" class="nav-link"><span class="link-number"></span> Experiencia</a></li>
-                        <li><a href="#projects" class="nav-link"><span class="link-number"></span> Proyectos</a></li>
-                        <li><a href="#contact" class="nav-link"><span class="link-number"></span> Contacto</a></li>
-                    </ul>
-                    <a href="#" class="btn-resume">Currículum</a>
-                    <div class="hamburger">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
+                <div class="navbar-container">
+                    <a href="/perfil.html" class="logo" aria-label="IA Developer Logo">
+                        <span class="logo-icon-wrapper">
+                            <span class="logo-icon"><i class="fas fa-brain"></i></span>
+                            <span class="logo-icon-glow"></span>
+                        </span>
+                        <span class="logo-text-wrapper">
+                            <span class="logo-text">
+                                <span class="logo-highlight">IA</span>DEVELOPER
+                            </span>
+                            <span class="logo-pulse" aria-hidden="true"></span>
+                        </span>
+                        <span class="logo-hover-effect"></span>
+                    </a>
+                    
+                    <div class="nav-right">
+                        <div class="nav-links-container">
+                            <ul class="nav-links">
+                                <li class="nav-item">
+                                    <a href="#about" class="nav-link">
+                                        <span class="nav-icon"><i class="fas fa-user"></i></span>
+                                        <span class="link-text-wrapper">
+                                            <span class="link-text">Yo</span>
+                                            <span class="link-underline"></span>
+                                        </span>
+                                        <span class="link-hover-effect"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#experience" class="nav-link">
+                                        <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                                        <span class="link-text-wrapper">
+                                            <span class="link-text">Experiencia</span>
+                                            <span class="link-underline"></span>
+                                        </span>
+                                        <span class="link-hover-effect"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#projects" class="nav-link">
+                                        <span class="nav-icon"><i class="fas fa-code-branch"></i></span>
+                                        <span class="link-text-wrapper">
+                                            <span class="link-text">Proyectos</span>
+                                            <span class="link-underline"></span>
+                                        </span>
+                                        <span class="link-hover-effect"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#contact" class="nav-link">
+                                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                                        <span class="link-text-wrapper">
+                                            <span class="link-text">Contacto</span>
+                                            <span class="link-underline"></span>
+                                        </span>
+                                        <span class="link-hover-effect"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn-resume">
+                            <span class="nav-icon"><i class="fas fa-file-alt"></i></span>
+                            <span class="btn-text">Currículum</span>
+                            <div class="btn-arrow">
+                                <svg width="16" height="16" viewBox="0 0 16 16">
+                                    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 1l6 7-6 7"/>
+                                </svg>
+                            </div>
+                            <div class="btn-hover-effect"></div>
+                        </a>
+                        
+                        <div class="hamburger" aria-label="Menú">
+                            <div class="hamburger-line line-1"></div>
+                            <div class="hamburger-line line-2"></div>
+                            <div class="hamburger-line line-3"></div>
+                        </div>
                     </div>
                 </div>
-            </nav>
 
+                <div class="navbar-background"></div>
+                <div class="navbar-highlight"></div>
+            </nav>
             <div class="hero">
                 <div class="hero-content">
                     <div class="hero-badge">
@@ -112,6 +176,11 @@
                     </div>
                 </div>
             </div>
+            
+            
+
+
+
         </div>
     </header>
 
@@ -130,7 +199,7 @@
                 <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-medium-m"></i></a>
             </div>
-            <p class="copyright">© 2023 Ingeniero de Software con IA. Todos los derechos reservados.</p>
+            <p class="copyright">© 2025 Ingeniero de Software con IA. Todos los derechos reservados.</p>
         </div>
     </footer>
 

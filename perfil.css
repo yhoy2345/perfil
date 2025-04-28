@@ -1,7 +1,11 @@
+/* ===============================
+   Variables principales
+================================== */
 :root {
     --primary: #1a73e8;
     --primary-dark: #0d47a1;
     --primary-light: #63a4ff;
+    --primary-cyan: #88d3ce;
     --secondary: #6c63ff;
     --secondary-dark: #483d8b;
     --dark: #121212;
@@ -19,10 +23,24 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    --easing: cubic-bezier(0.16, 1, 0.3, 1);
+    --primary-rgb: 26, 115, 232;
+    --primary-dark-rgb: 13, 71, 161;
+    --secondary-rgb: 108, 99, 255;
+    --primary-light-rgb: 99, 164, 255;
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
 }
 
-/* Reset y estilos base */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ===============================
+   Reset básico y estilos globales
+================================== */
 * {
     margin: 0;
     padding: 0;
@@ -41,53 +59,9 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 /* ===========================
    Header
-   =========================== */
-   :root {
-    --primary: #1a73e8;
-    --primary-dark: #0d47a1;
-    --primary-light: #63a4ff;
-    --secondary: #6c63ff;
-    --secondary-dark: #483d8b;
-    --dark: #121212;
-    --darker: #0a0a0a;
-    --light: #f8f9fa;
-    --lighter: #ffffff;
-    --gray: #e0e0e0;
-    --dark-gray: #424242;
-    --success: #00c853;
-    --warning: #ffab00;
-    --error: #d50000;
-    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-    --gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-/* Reset y estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    background-color: var(--darker);
-    color: var(--light);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+=========================== */
 
 .container {
     width: 100%;
@@ -96,7 +70,6 @@ body {
     padding: 0 20px;
 }
 
-/* Header Premium */
 .premium-header {
     position: relative;
     min-height: 100vh;
@@ -124,102 +97,681 @@ body {
     backdrop-filter: blur(10px);
     z-index: 2;
 }
+.perfil-header {
+    position: relative;
+    min-height: 100vh;
+    background: var(--darker);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+    padding-top: 30px; 
+}
 
-/* Navbar Premium */
+.header-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* ===========================
+   Navbar
+=========================== */
 .navbar {
+    position: fixed;
+    top: 30px; /* 30px del tope */
+    left: 50%;
+    transform: translateX(-50%); /* centrado */
+    width: 55%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.4); /* si quieres fondo */
+    backdrop-filter: blur(10px); /* opcional, glassmorphism */
+    border-radius: 20px; /* opcional, bordes redondeados */
+    padding: 10px 20px; /* opcional, separación interna */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* opcional, sombrita */
+
+    
+}
+
+.navbar-container {
+    position: relative;
+    width: 100%;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
-    position: relative;
     z-index: 10;
+
 }
+
+.navbar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--glass);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.navbar-highlight {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 99.5%;
+    height: 3px; 
+    background: linear-gradient(
+        90deg, 
+        rgba(var(--primary-dark-rgb), 0) 0%, 
+        var(--primary-dark) 25%, 
+        var(--secondary) 50%, 
+        var(--primary-light) 75%, 
+        rgba(var(--primary-light-rgb), 0) 100%
+    );
+    border-radius: 999px;
+    opacity: 0.9;
+    z-index: 1;
+    animation: gradient-flow 8s ease infinite;
+    transition: all 0.5s var(--ease-out-quint);
+    overflow: hidden;
+}
+
+/* Efecto sutil de onda luminosa */
+.navbar-highlight::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20%;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    animation: wave 6s linear infinite;
+    transform: skewX(-20deg);
+}
+
+/* Animaciones mejoradas */
+@keyframes gradient-flow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes wave {
+    0% {
+        left: -20%;
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        left: 120%;
+        opacity: 0.8;
+    }
+}
+/* ===============================
+   Logo
+================================== */
 
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--lighter);
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    color: var(--light);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 50px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: logo-entrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     transition: var(--transition);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
 }
 
-.logo span {
-    color: var(--primary-light);
+.logo-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
 }
 
 .logo-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--secondary);
+    font-size: 1.8rem;
+    color: var(--primary);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
 }
+
+.logo-icon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.2;
+    transform: scale(0.8);
+    transition: all 0.6s ease;
+    filter: blur(5px);
+}
+
+.logo-text-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.logo-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 0;
+    overflow: hidden;
+    animation: typing 1.8s 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo-highlight {
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    position: relative;
+}
+
+.logo-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    position: relative;
+    opacity: 0;
+    animation: pulse-appear 0.8s 2s ease-out forwards, 
+               pulse 1.5s 2.5s infinite ease-in-out;
+    box-shadow: 0 0 10px var(--success);
+}
+
+.logo-hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-dark);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+/* Hover Effects */
+.logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(15deg) scale(1.1);
+    color: var(--primary-light);
+}
+
+.logo:hover .logo-icon-glow {
+    opacity: 0.4;
+    transform: scale(1.2);
+}
+
+.logo:hover .logo-hover-effect {
+    opacity: 0.1;
+}
+
+.logo:hover .logo-pulse {
+    transform: scale(1.3);
+}
+
+/* Animations */
+@keyframes logo-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes pulse-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(0, 200, 83, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0);
+    }
+}
+
+/* Efecto de carga */
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: loading 2.5s ease-in-out;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+/* ===============================
+   Navegación Links
+================================== */
 
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+}
+
+.nav-links-container {
+    display: flex;
 }
 
 .nav-links {
     display: flex;
+    gap: 1.5rem;
     list-style: none;
-    gap: 30px;
+    padding: 0;
+    margin: 0;
 }
 
+.nav-item {
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s var(--ease-out-quint) forwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-item:nth-child(2) { animation-delay: 0.2s; }
+.nav-item:nth-child(3) { animation-delay: 0.3s; }
+.nav-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   Enlaces del Menú 
+================================== */
 .nav-link {
-    color: var(--gray);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: var(--transition);
+    position: relative;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 5px;
+    text-decoration: none;
+    color: var(--light);
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-medium);
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    transition: all 0.4s var(--ease-out-quint);
+    overflow: hidden;
+    gap: 4px;
 }
 
-.link-number {
-    color: var(--secondary);
-    font-size: 12px;
+.link-text {
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s var(--ease-out-quint);
+    padding: 0 0.5rem;
 }
 
+.link-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transform: translateX(-50%);
+    transition: all 0.6s var(--ease-out-quint);
+    opacity: 0;
+}
+
+.link-hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(var(--primary-rgb), 0.1) 20%,
+        rgba(var(--primary-rgb), 0.05) 50%,
+        rgba(var(--primary-rgb), 0.1) 80%,
+        transparent
+    );
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.6s var(--ease-out-quint);
+    z-index: 1;
+}
+
+/* Efectos hover  */
 .nav-link:hover {
     color: var(--primary-light);
 }
 
-.btn-resume {
-    background: transparent;
+.nav-link:hover .link-text {
+    transform: translateY(-3px);
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover .link-underline {
+    width: 100%;
+    opacity: 1;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--primary),
+        var(--secondary),
+        transparent
+    );
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);
+}
+
+.nav-link:hover .link-hover-effect {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Efecto activo (para la página actual) */
+.nav-link.active {
     color: var(--primary-light);
-    border: 1px solid var(--primary-light);
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
+}
+
+.nav-link.active .link-underline {
+    width: 100%;
+    opacity: 1;
+    background: var(--primary);
+}
+
+/* ===============================
+   Iconos del menu
+================================== */
+
+/* Versión con animación más elaborada */
+.nav-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-cyan);
+    transition: all 0.4s var(--ease-out-quint);
+}
+
+.nav-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(var(--primary-rgb), 0.1);
+    transform: scale(0);
     transition: var(--transition);
+    z-index: -1;
+}
+
+.nav-link:hover .nav-icon::before {
+    transform: scale(1.5);
+    opacity: 0;
+}
+
+.nav-link:hover .nav-icon {
+    color: var(--lighter);
+    transform: translateY(-3px) scale(1.1);
+    text-shadow: 0 0 8px rgba(var(--primary-light-rgb), 0.6);
+}
+
+
+/* ===============================
+   Botón Currículum 
+================================== */
+.btn-resume {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px 12px 20px;
+    background: var(--gradient);
+    color: var(--lighter);
+    border-radius: 50px;
     text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
 }
 
+.btn-resume::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-dark);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-quint);
+    z-index: -1;
+}
+
+.btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s var(--ease-out-quint);
+}
+
+.btn-arrow svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5px;
+}
+
+.btn-hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: all 0.7s var(--ease-out-quint);
+    transform: skewX(-15deg);
+    z-index: 1;
+}
+
+/* Efectos hover premium */
 .btn-resume:hover {
-    background: rgba(26, 115, 232, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
 }
 
+.btn-resume:hover::before {
+    opacity: 1;
+}
+
+.btn-resume:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+.btn-resume:hover .btn-hover-effect {
+    left: 150%;
+}
+
+/* Efecto activo */
+.btn-resume:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(var(--primary-rgb), 0.2);
+}
+
+/* ===============================
+   Botón Hamburguesa Premium
+================================== */
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
     cursor: pointer;
+    position: relative;
+    z-index: 100;
+    padding: 5px;
 }
 
-.hamburger .line {
-    width: 25px;
+.hamburger-line {
+    width: 100%;
     height: 2px;
     background: var(--light);
-    transition: var(--transition);
+    transition: all 0.4s var(--ease-out-quint);
+    transform-origin: center;
+    border-radius: 2px;
 }
+
+/* Efecto hover para hamburguesa */
+.hamburger:hover .hamburger-line {
+    background: var(--primary-light);
+}
+
+.hamburger:hover .line-1 {
+    transform: translateY(-1px);
+}
+.hamburger:hover .line-3 {
+    transform: translateY(1px);
+}
+
+/* Estado activo (cuando el menú está abierto) */
+.hamburger.active .line-1 {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active .line-2 {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger.active .line-3 {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mostrar hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-links-container {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+}
+
+
+
+
 
 /* Hero Section Premium */
 .hero {
